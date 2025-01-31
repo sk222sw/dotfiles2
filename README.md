@@ -24,3 +24,5 @@ run stow `stow .`
 
 make sure ~/.zshrc is overwritten by stow else remove it and run stow again
 
+install mise `https://mise.jdx.dev/getting-started.html`
+

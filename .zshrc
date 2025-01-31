@@ -5,6 +5,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+# mise
+eval "$(/usr/bin/mise activate zsh)"
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -47,8 +50,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH=~/bin:$PATH
 export PATH=$PATH:/snap/bin
-
-eval "$(~/.local/bin/mise activate zsh)"
 
 
 export FLYCTL_INSTALL="/home/sonny/.fly"
