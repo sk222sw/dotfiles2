@@ -1,0 +1,18 @@
+{
+	"HEEx Expression Tag": {
+		"prefix": "et",
+		"body": [
+			"<%= $1 %>"
+		],
+		"description": "HEEx expression tag"
+	},
+	"HEEx For": {
+		"prefix": "etfor",
+		"body": [
+			"<%= for ${1:item} <- ${2:@items} do %>",
+			"<li><%= ${1:item} %></li>",
+			"<% end %>"
+		],
+		"description": "HEEx for loop"
+	}
+}
