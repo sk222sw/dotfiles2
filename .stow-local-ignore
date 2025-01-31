@@ -1,0 +1,6 @@
+.tmux/resurrect/*
+.tmux/plugins/tpm/*
+.tmux/tmp/*
+.tmux/pane.log
+.tmux/history
+
