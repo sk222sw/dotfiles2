@@ -3,4 +3,8 @@
 .tmux/tmp/*
 .tmux/pane.log
 .tmux/history
+.config/go/*
+.config/mise/*
+.config/mise/config.toml
+.git
 
