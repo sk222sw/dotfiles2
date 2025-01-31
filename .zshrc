@@ -83,7 +83,7 @@ plugins=(git sudo docker zsh-autosuggestions zsh-syntax-highlighting fd dirhisto
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-alias ls='exa --icons'
+alias ls='eza --icons'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export PATH=~/bin:$PATH
@@ -101,6 +101,7 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 # neovim
 export PATH="$PATH:/opt/nvim-linux64/bin"
 export PATH=~/bin:$PATH
+export PATH=$PATH:/snap/bin
 
 eval "$(~/.local/bin/mise activate zsh)"
 
