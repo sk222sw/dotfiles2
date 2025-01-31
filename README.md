@@ -2,6 +2,8 @@
 
 eza `https://github.com/eza-community/eza/blob/main/INSTALL.md#debian-and-ubuntu`
 
+bat `sudo apt install bat`
+
 zsh `apt install zsh`
 
 make zsh default `chsh -s $(which zsh)`
@@ -25,4 +27,6 @@ run stow `stow .`
 make sure ~/.zshrc is overwritten by stow else remove it and run stow again
 
 install mise `https://mise.jdx.dev/getting-started.html`
+
+
 
