@@ -3,6 +3,13 @@
 .tmux/tmp/*
 .tmux/pane.log
 .tmux/history
+
+.config/tmux/resurrect/*
+.config/tmux/plugins/tpm/*
+.config/tmux/tmp/*
+.config/tmux/pane.log
+.config/tmux/history
+
 .config/go/*
 .config/mise/*
 .config/mise/config.toml

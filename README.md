@@ -1,11 +1,18 @@
 # Install
 
 ## Programs
+### tmux
+`sudo apt install tmux`
+
+`git clone https://github.com/tmux-plugins/tpm ~/.config/.tmux/plugins/tpm`
+
+Enter tmux, run `Ctrl-B I` to install tmux packages
+
 ### eza
 `https://github.com/eza-community/eza/blob/main/INSTALL.md#debian-and-ubuntu`
 
 ### bat
-bat `sudo apt install bat`
+`sudo apt install bat`
 
 ### zsh
 `apt install zsh`
