@@ -1,5 +1,6 @@
 .tmux/resurrect/*
 .tmux/plugins/tpm/*
+.tmux/plugins/*
 .tmux/tmp/*
 .tmux/pane.log
 .tmux/history
@@ -7,6 +8,7 @@
 .config/tmux/resurrect/*
 .config/tmux/plugins/tpm/*
 .config/tmux/tmp/*
+.config/tmux/plugins/*
 .config/tmux/pane.log
 .config/tmux/history
 
