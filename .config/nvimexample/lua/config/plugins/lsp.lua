@@ -86,10 +86,10 @@ local function setupCapabilities()
       "scss",
       "pug",
       "typescriptreact",
-      "heex",
-      "ex",
-      "html-eex",
-      "elixir",
+      -- "heex",
+      -- "ex",
+      -- "html-eex",
+      -- "elixir",
     },
     -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
     -- **Note:** only the options listed in the table are supported.
@@ -116,66 +116,74 @@ local function setupCapabilities()
   })
 
   lspconfig.tailwindcss.setup({
-    root_dir = function(fname)
-      return require("lspconfig.util").root_pattern(
-        "tailwind.config.ts",
-        "tailwind.config.js",
-        "tailwind.config.cjs",
-        "package.json",
-        ".git"
-      )(fname) or vim.fn.getcwd()
-    end,
     capabilities = capabilities,
-    filetypes = { "html", "css", "scss", "javascript", "typescript", "react", "heex", "elixir", "eelixir" },
-    init_options = {
-      userLanguages = {
-        elixir = "html",
-        heex = "html",
-        eelixir = "html",
-      },
+    filetypes = {
+      "html",
+      "css",
+      "scss",
+      "javascript",
+      "typescript",
+      "react",
+      "heex",
+      "elixir",
+      "eelixir",
+      "html-eex",
+      "phoenix-heex",
     },
+    root_dir = lspconfig.util.root_pattern(
+      "assets/tailwind.config.js",
+      "assets/tailwind.config.ts",
+      "postcss.config.js",
+      "postcss.config.ts",
+      "package.json",
+      "node_modules",
+      ".git",
+      "mix.exs"
+    ),
     settings = {
-      tailwindCSS = {
-        experimental = {
-          classRegex = {
-            'class[:]\\s*"([^"]*)"',
-            'class\\s*=\\s*"([^"]+)"',           -- HTML & HEEx class attributes
-            'class:\\s*"([^"]+)"',               -- JSX/TSX
-            '~H""".*class="([^"]+)".*"""',       -- Phoenix HEEx ~H""" class attributes
-            '~H".*class="([^"]+)".*"',           -- Another HEEx-style interpolation
-            { 'class[:]\\s*"([^"]*)"', 1 },      -- For Phoenix `class="..."` syntax
-            { '~H"([^"]*)"',           1 },      -- For Phoenix `~H` and `HEEx` tags
-            'class\\s*=\\s*"([^"]+)"',           -- Standard class="" attributes (HTML, HEEx)
-            'class:\\s*"([^"]+)"',               -- JSX/TSX
-            '{\\s*class\\s*,\\s*"([^"]+)"\\s*}', -- Tailwind in Elixir maps
-            'class:\\s*"([^"]+)"',               -- More JSX/TSX patterns
-            "class=\\{(.*)\\}",                  -- Handle class={@variable} interpolation
-          },
+      init_options = {
+        userLanguages = {
+          elixir = "html-eex",
+          eelixir = "html-eex",
+          heex = "html-eex",
         },
+      },
+      tailwindCSS = {
         includeLanguages = {
           elixir = "html-eex",
           eelixir = "html-eex",
           heex = "html-eex",
           ["html-eex"] = "html",
           ["phoenix-heex"] = "html",
+          markdown = "html",
+          plaintext = "html",
+          txt = "html",
+        },
+        init_options = {
+          userLanguages = {
+            elixir = "html-eex",
+            eelixir = "html-eex",
+            heex = "html-eex",
+          },
+        },
+        experimental = {
+          classRegex = {
+            'class[:]\\s*"([^"]*)"',
+            'class\\s*=\\s*"([^"]+)"',           -- Standard class="" attributes
+            'class:\\s*"([^"]+)"',               -- JSX/TSX
+            "class=\\{(.*)\\}",                  -- Handle class={@variable} interpolation
+            '{\\s*class\\s*,\\s*"([^"]+)"\\s*}', -- Tailwind class maps in Phoenix
+          },
         },
       },
     },
-    on_attach = function(client, bufnr)
-      -- **Force Tailwind to recognize `heex` & `elixir` as `html-eex`**
-      if client.name == "tailwindcss" then
-        client.config.settings.tailwindCSS.includeLanguages = {
-          heex = "html-eex",
-          elixir = "html-eex",
-          eelixir = "html-eex",
-        }
-        client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-      end
-    end,
   })
 
-  -- lspconfig.tailwindcss.setup({
-  -- })
+  lspconfig.elixirls.setup({
+    capabilities = capabilities,
+    cmd = { "elixir-ls" },
+    settings = { elixirLS = { dialyzerEnabled = false } },
+  })
 end
 
 return {
@@ -200,6 +208,20 @@ return {
       setupCapabilities()
 
       vim.api.nvim_create_autocmd("LspAttach", lspAttachTable)
+
+      local lspconfig = require("lspconfig")
+
+      local clients = vim.lsp.get_active_clients()
+      vim.api.nvim_set_keymap(
+        "n",
+        "<leader>o",
+        ":lua print(vim.api.nvim_get_current_buf())<CR>",
+        { noremap = true, silent = true }
+      )
+
+      for _, client in ipairs(clients) do
+        print(client.name)
+      end
     end,
   },
 }

@@ -7,6 +7,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # mise
 eval "$(/usr/bin/mise activate zsh)"
+eval "$(/home/sonny/.local/bin/mise activate zsh)"
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
