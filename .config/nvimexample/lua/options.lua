@@ -63,3 +63,6 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 vim.opt.cmdheight = 0
+
+vim.g.tpipeline_autoembed = 1 -- Ensures tpipeline integrates into tmux correctly
+vim.opt.laststatus = 0        -- Hides Neovim's own statusline
