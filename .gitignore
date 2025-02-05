@@ -1,1 +1,3 @@
 .config/tmux/plugins
+.config/go/telemetry/local
+.config/mise

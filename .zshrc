@@ -29,8 +29,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git sudo docker zsh-autosuggestions zsh-syntax-highlighting dirhistory history)
 
-source $ZSH/oh-my-zsh.sh
-
 # User configuration
 alias ls='eza --icons'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
@@ -79,3 +77,6 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/sonny/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
+
+source $ZSH/oh-my-zsh.sh
+

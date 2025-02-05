@@ -56,12 +56,7 @@ local function setupCapabilities()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   lspconfig.lua_ls.setup({ capabilities = capabilities })
-  lspconfig.ts_ls.setup({
-    capabilities = capabilities,
-    init_options = {
-      disableSuggestions = true,
-    },
-  })
+
   lspconfig.html.setup({
     capabilities = capabilities,
   })
@@ -209,19 +204,11 @@ return {
 
       vim.api.nvim_create_autocmd("LspAttach", lspAttachTable)
 
-      local lspconfig = require("lspconfig")
-
-      local clients = vim.lsp.get_active_clients()
-      vim.api.nvim_set_keymap(
-        "n",
-        "<leader>o",
-        ":lua print(vim.api.nvim_get_current_buf())<CR>",
-        { noremap = true, silent = true }
-      )
-
-      for _, client in ipairs(clients) do
-        print(client.name)
-      end
+      require("typescript-tools").setup({
+        settings = {
+          separate_diagnostic_server = false,
+        },
+      })
     end,
   },
 }
