@@ -20,12 +20,12 @@ return {
     })
 
     elixir.setup({
-      -- nextls = { enable = false },
-      -- credo = { enable = false },
+      nextls = { enable = true },
+      credo = { enable = true },
       elixirls = {
         enable = true,
         settings = elixirls.settings({
-          dialyzerEnabled = false,
+          dialyzerEnabled = true,
           enableTestLenses = false,
         }),
         on_attach = function(client, bufnr)

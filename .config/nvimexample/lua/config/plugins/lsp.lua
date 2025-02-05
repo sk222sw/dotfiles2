@@ -81,10 +81,10 @@ local function setupCapabilities()
       "scss",
       "pug",
       "typescriptreact",
-      -- "heex",
-      -- "ex",
-      -- "html-eex",
-      -- "elixir",
+      "heex",
+      "ex",
+      "html-eex",
+      "elixir",
     },
     -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
     -- **Note:** only the options listed in the table are supported.
@@ -164,20 +164,14 @@ local function setupCapabilities()
         experimental = {
           classRegex = {
             'class[:]\\s*"([^"]*)"',
-            'class\\s*=\\s*"([^"]+)"',           -- Standard class="" attributes
-            'class:\\s*"([^"]+)"',               -- JSX/TSX
-            "class=\\{(.*)\\}",                  -- Handle class={@variable} interpolation
+            'class\\s*=\\s*"([^"]+)"', -- Standard class="" attributes
+            'class:\\s*"([^"]+)"', -- JSX/TSX
+            "class=\\{(.*)\\}", -- Handle class={@variable} interpolation
             '{\\s*class\\s*,\\s*"([^"]+)"\\s*}', -- Tailwind class maps in Phoenix
           },
         },
       },
     },
-  })
-
-  lspconfig.elixirls.setup({
-    capabilities = capabilities,
-    cmd = { "elixir-ls" },
-    settings = { elixirLS = { dialyzerEnabled = false } },
   })
 end
 
