@@ -9,6 +9,8 @@ return {
     local elixir = require("elixir")
     local elixirls = require("elixir.elixirls")
 
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     ---@diagnostic disable-next-line: missing-fields
     require("nvim-treesitter.configs").setup({
       ensure_installed = {
@@ -20,6 +22,7 @@ return {
     })
 
     elixir.setup({
+      capabilities = capabilities,
       nextls = { enable = true },
       credo = { enable = true },
       elixirls = {

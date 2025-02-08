@@ -33,15 +33,16 @@ return {
             require("luasnip").lsp_expand(args.body)
           end,
         },
-        ormatting = {
+        formatting = {
           format = function(entry, vim_item)
-            -- Show source name in menu
-            vim_item.menu = ({
-              nvim_lsp = "[LSP]",
-              buffer = "[BUF]",
-              path = "[PATH]",
-              luasnip = "[SNIP]",
-            })[entry.source.name]
+            -- Show completion source in completion window
+            local source_name = entry.source.name
+
+            if source_name == "nvim_lsp" and entry.source.source.client then
+              source_name = entry.source.source.client.name
+            end
+
+            vim_item.menu = "[" .. source_name .. "]"
             return vim_item
           end,
         },

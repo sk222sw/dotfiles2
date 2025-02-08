@@ -52,10 +52,11 @@ local lspAttachTable = {
 }
 
 local function setupCapabilities()
-  -- local capabilities = require("blink.cmp").get_lsp_capabilities()
   local lspconfig = require("lspconfig")
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   lspconfig.lua_ls.setup({ capabilities = capabilities })
+
+  lspconfig.elixirls.setup({ capabilities = capabilities })
 
   lspconfig.html.setup({
     capabilities = capabilities,
@@ -164,9 +165,9 @@ local function setupCapabilities()
         experimental = {
           classRegex = {
             'class[:]\\s*"([^"]*)"',
-            'class\\s*=\\s*"([^"]+)"', -- Standard class="" attributes
-            'class:\\s*"([^"]+)"', -- JSX/TSX
-            "class=\\{(.*)\\}", -- Handle class={@variable} interpolation
+            'class\\s*=\\s*"([^"]+)"',           -- Standard class="" attributes
+            'class:\\s*"([^"]+)"',               -- JSX/TSX
+            "class=\\{(.*)\\}",                  -- Handle class={@variable} interpolation
             '{\\s*class\\s*,\\s*"([^"]+)"\\s*}', -- Tailwind class maps in Phoenix
           },
         },
