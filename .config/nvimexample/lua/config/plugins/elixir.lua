@@ -23,9 +23,10 @@ return {
 
     elixir.setup({
       capabilities = capabilities,
-      nextls = { enable = true },
-      credo = { enable = true },
+      nextls = { enable = true, capabilities = capabilities },
+      credo = { enable = true, capabilities = capabilities },
       elixirls = {
+        capabilities = capabilities,
         enable = true,
         settings = elixirls.settings({
           dialyzerEnabled = true,

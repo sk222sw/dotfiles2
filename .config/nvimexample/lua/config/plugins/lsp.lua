@@ -56,8 +56,6 @@ local function setupCapabilities()
   local capabilities = require("cmp_nvim_lsp").default_capabilities()
   lspconfig.lua_ls.setup({ capabilities = capabilities })
 
-  lspconfig.elixirls.setup({ capabilities = capabilities })
-
   lspconfig.html.setup({
     capabilities = capabilities,
   })

@@ -47,14 +47,4 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true, desc = "[D]elete [a] [f]unction" }
 )
 
-vim.keymap.set("n", "<leader>Ps", function()
-  local session_name = get_session_name()
-  require("mini.sessions").write(session_name)
-  print("Session saved: " .. session_name)
-end, { desc = "Save session for current folder/tmux" })
-
-vim.keymap.set("n", "<leader>Pl", function()
-  local session_name = get_session_name()
-  require("mini.sessions").read(session_name)
-  print("Session loaded: " .. session_name)
-end, { desc = "Load session for current folder/tmux" })
+vim.keymap.set("n", "<leader>Ch", require("telescope.builtin").command_history, { desc = "[C]ommand [h]istory" })
