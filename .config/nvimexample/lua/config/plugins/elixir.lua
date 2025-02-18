@@ -1,5 +1,6 @@
 return {
   "elixir-tools/elixir-tools.nvim",
+  enabled = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
   },

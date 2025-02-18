@@ -172,6 +172,13 @@ local function setupCapabilities()
       },
     },
   })
+
+  lspconfig.lexical.setup({
+    capabilities = capabilities,
+    cmd = { vim.fn.stdpath("data") .. "/mason/bin/lexical" }, -- Auto-detect Mason path
+    filetypes = { "elixir", "eelixir", "heex" },
+    root_dir = lspconfig.util.root_pattern("mix.exs", ".git"),
+  })
 end
 
 return {
