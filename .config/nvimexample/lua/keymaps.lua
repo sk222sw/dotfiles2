@@ -46,5 +46,3 @@ vim.api.nvim_set_keymap(
   "va{Vd",
   { noremap = true, silent = true, desc = "[D]elete [a] [f]unction" }
 )
-
-vim.keymap.set("n", "<leader>Ch", require("telescope.builtin").command_history, { desc = "[C]ommand [h]istory" })
