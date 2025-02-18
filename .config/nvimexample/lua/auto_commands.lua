@@ -14,8 +14,3 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.opt.relativenumber = false
   end,
 })
-
--- Function to generate session name based on the folder name
-local function get_session_name()
-  return vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t") -- Uses folder name
-end
