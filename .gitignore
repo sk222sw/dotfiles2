@@ -1,3 +1,5 @@
 .config/tmux/plugins
 .config/go/telemetry/local
 .config/mise
+.config/nextjs-nodejs/config.json
+.config/create-next-app-nodejs
