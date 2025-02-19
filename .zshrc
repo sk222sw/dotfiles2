@@ -30,7 +30,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git sudo docker zsh-autosuggestions zsh-syntax-highlighting dirhistory history)
 
 # User configuration
-alias ls='eza --icons'
+alias lss='eza --icons'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 export PATH=~/bin:$PATH
