@@ -84,6 +84,7 @@ local function setupCapabilities()
       "ex",
       "html-eex",
       "elixir",
+      "svelte",
     },
     -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
     -- **Note:** only the options listed in the table are supported.
@@ -178,6 +179,18 @@ local function setupCapabilities()
     cmd = { vim.fn.stdpath("data") .. "/mason/bin/lexical" }, -- Auto-detect Mason path
     filetypes = { "elixir", "eelixir", "heex" },
     root_dir = lspconfig.util.root_pattern("mix.exs", ".git"),
+  })
+
+  -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+  require("lspconfig").html.setup({
+    capabilities = capabilities,
+  })
+
+  require("lspconfig").svelte.setup({
+    on_attach = function(client, bufnr)
+      client.server_capabilities.documentFormattingProvider = false
+    end,
   })
 end
 
