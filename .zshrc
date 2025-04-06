@@ -80,3 +80,4 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
+source ~/.zsh_secrets

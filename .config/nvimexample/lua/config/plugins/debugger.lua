@@ -64,7 +64,17 @@ return {
       "nvim-neotest/nvim-nio",
     },
     config = function()
-      require("dap-go").setup()
+      require("dap-go").setup({
+        dap_configurations = {
+          {
+            type = "go",
+            name = "Debug with args",
+            request = "launch",
+            program = "${file}",
+            args = require("dap-go").get_arguments, -- Function to prompt for arguments
+          },
+        },
+      })
     end,
   },
 }
