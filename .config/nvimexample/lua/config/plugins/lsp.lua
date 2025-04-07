@@ -216,12 +216,6 @@ return {
       setupCapabilities()
 
       vim.api.nvim_create_autocmd("LspAttach", lspAttachTable)
-
-      require("typescript-tools").setup({
-        settings = {
-          separate_diagnostic_server = false,
-        },
-      })
     end,
   },
 }
