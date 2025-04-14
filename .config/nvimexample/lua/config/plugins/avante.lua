@@ -3,8 +3,8 @@ return {
   event = "VeryLazy",
   version = false, -- Never set this value to "*"! Never!
   opts = {
-    provider = "anthropic",
-    anthropic = {
+    provider = "claude",
+    claude = {
       endpoint = "https://api.anthropic.com/",
       model = "claude-3-7-sonnet-20250219", -- using Claude 3.7 Sonnet
       timeout = 60000,                      -- Increased timeout for Claude

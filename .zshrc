@@ -81,3 +81,4 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 source ~/.zsh_secrets
+[ -f ~/.zsh_secrets ] && source ~/.zsh_secrets
