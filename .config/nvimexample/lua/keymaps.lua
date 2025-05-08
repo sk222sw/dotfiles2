@@ -46,3 +46,7 @@ vim.api.nvim_set_keymap(
   "va{Vd",
   { noremap = true, silent = true, desc = "[D]elete [a] [f]unction" }
 )
+
+vim.keymap.set("n", "<leader>la", function()
+  require("plugins.sido").add_current_location()
+end, { desc = "Add current location to sido" })
