@@ -50,3 +50,7 @@ vim.api.nvim_set_keymap(
 vim.keymap.set("n", "<leader>la", function()
   require("plugins.sido").add_current_location()
 end, { desc = "Add current location to sido" })
+
+vim.keymap.set("n", "<leader>lm", function()
+  require("plugins.sido").move_task()
+end, { desc = "Move task under cursor" })

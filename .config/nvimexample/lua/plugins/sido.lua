@@ -22,7 +22,7 @@ function M.add_current_location()
 
       -- Now run the command with all parameters
       local cmd = string.format(
-        '~/bin/sido add -f "%s" -l %d --title "%s" --description "%s"',
+        '~/bin/sido add -f "%s" -l %d --title "%s" --description "%s" --tag --sync',
         file,
         line,
         title:gsub('"', '\\"'),
@@ -32,6 +32,34 @@ function M.add_current_location()
       vim.notify("Running: " .. cmd)
       vim.cmd("!" .. cmd)
     end)
+  end)
+end
+
+function M.move_task()
+  local current_line = vim.fn.getline(".")
+  local task_number = current_line:match("// _todo%-(%d+)")
+
+  if not task_number then
+    vim.notify("No todo ID found in current line. Expected format: // _todo-123", vim.log.levels.ERROR)
+    return
+  end
+
+  local options = { "NOT STARTED", "IN PROGRESS", "DONE" }
+
+  vim.ui.select(options, {
+    prompt = "Select task status:",
+    format_item = function(item)
+      return item
+    end,
+  }, function(selected_directory, idx)
+    if not selected_directory then
+      return
+    end -- User cancelled
+
+    local cmd = string.format('~/bin/sido move --task %s --directory "%s"', task_number, selected_directory)
+
+    vim.notify("Running: " .. cmd)
+    vim.cmd("!" .. cmd)
   end)
 end
 
