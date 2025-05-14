@@ -54,3 +54,11 @@ end, { desc = "Add current location to sido" })
 vim.keymap.set("n", "<leader>lm", function()
   require("plugins.sido").move_task()
 end, { desc = "Move task under cursor" })
+
+vim.keymap.set("n", "<leader>ett", function()
+  require("plugins.go_test").run_current_go_test()
+end, { desc = "Run Go test under cursor" })
+
+vim.keymap.set("n", "<leader>eta", function()
+  require("plugins.go_test").run_all_go_tests_in_file()
+end, { desc = "Run Go test under cursor" })
