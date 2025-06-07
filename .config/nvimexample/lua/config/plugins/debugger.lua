@@ -42,6 +42,10 @@ return {
         require("dap").step_out()
       end)
 
+      vim.keymap.set("n", "<leader>dh", function()
+        require("dap.ui.widgets").hover()
+      end)
+
       -- Define the highlight group for the breakpoint icon (red)
       vim.api.nvim_set_hl(0, "DapBreakpointSign", { fg = "#FF0000" })
 
@@ -72,6 +76,25 @@ return {
             request = "launch",
             program = "${file}",
             args = require("dap-go").get_arguments, -- Function to prompt for arguments
+          },
+          {
+            type = "go",
+            name = "Debug with join command",
+            request = "launch",
+            program = "${workspaceFolder}/main.go",
+            -- args = { "join", "--source", "1", "--target", "3" },
+            args = require("dap-go").get_arguments, -- Function to prompt for arguments
+            buildFlags = "",
+          },
+          {
+            type = "go",
+            name = "Debug with custom args",
+            request = "launch",
+            program = "${workspaceFolder}/main.go",
+            args = function()
+              local args_string = vim.fn.input("Arguments: ", "join --source 1 --target 3")
+              return vim.split(args_string, " ")
+            end,
           },
         },
       })
