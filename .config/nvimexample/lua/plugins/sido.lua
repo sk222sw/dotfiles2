@@ -63,4 +63,62 @@ function M.move_task()
   end)
 end
 
+function M.show_tasks()
+  local function pick_files_recursive(folder_path)
+    local items = {}
+    -- Helper function to recursively get files
+    local function scan_dir(path, prefix)
+      prefix = prefix or ""
+      for name, type in vim.fs.dir(path) do
+        local full_path = path .. "/" .. name
+        local display_name = prefix .. name
+        if type == "file" then
+          table.insert(items, {
+            text = display_name,
+            file = full_path,
+            path = full_path,
+          })
+        elseif type == "directory" and name ~= "." and name ~= ".." then
+          scan_dir(full_path, display_name .. "/")
+        end
+      end
+    end
+
+    scan_dir(folder_path)
+
+    -- Sort items numerically by filename
+    table.sort(items, function(a, b)
+      local num_a = tonumber(a.text:match("(%d+)%.md$"))
+      local num_b = tonumber(b.text:match("(%d+)%.md$"))
+
+      -- If both have numbers, sort numerically
+      if num_a and num_b then
+        return num_a < num_b
+      end
+
+      -- If only one has a number, put numbered files first
+      if num_a and not num_b then
+        return true
+      end
+      if num_b and not num_a then
+        return false
+      end
+
+      -- If neither has numbers, sort alphabetically
+      return a.text < b.text
+    end)
+
+    Snacks.picker.pick({
+      source = "static",
+      items = items,
+      title = "Tasks",
+      on_select = function(item)
+        vim.cmd("edit " .. item.file)
+      end,
+    })
+  end
+  -- Usage
+  pick_files_recursive(vim.fn.expand("./.sido/tasks"))
+end
+
 return M
