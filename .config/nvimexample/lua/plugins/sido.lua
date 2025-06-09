@@ -91,28 +91,63 @@ function M.show_tasks()
       local num_a = tonumber(a.text:match("(%d+)%.md$"))
       local num_b = tonumber(b.text:match("(%d+)%.md$"))
 
-      -- If both have numbers, sort numerically
       if num_a and num_b then
         return num_a < num_b
       end
-
-      -- If only one has a number, put numbered files first
       if num_a and not num_b then
         return true
       end
       if num_b and not num_a then
         return false
       end
-
-      -- If neither has numbers, sort alphabetically
       return a.text < b.text
     end)
 
     Snacks.picker.pick({
       source = "static",
       items = items,
-      title = "Tasks",
+      title = "Tasks (Tab to select, m to move selected)",
+      -- Remove multi = true for now
+      keys = {
+        ["<Tab>"] = {
+          desc = "Toggle selection",
+          action = function(picker)
+            picker:toggle()
+          end,
+        },
+        ["m"] = {
+          desc = "Move selected to IN PROGRESS",
+          action = function(picker)
+            local selected = picker:selected()
+            if not selected or #selected == 0 then
+              vim.notify("No files selected")
+              return
+            end
+
+            -- Create IN_PROGRESS folder if it doesn't exist
+            local in_progress_dir = vim.fn.expand("./.sido/tasks/IN PROGRESS")
+            vim.fn.mkdir(in_progress_dir, "p")
+
+            local moved_count = 0
+            for _, item in ipairs(selected) do
+              local filename = vim.fn.fnamemodify(item.file, ":t")
+              local new_path = in_progress_dir .. "/" .. filename
+
+              local success = vim.fn.rename(item.file, new_path)
+              if success == 0 then
+                moved_count = moved_count + 1
+              else
+                vim.notify("Failed to move: " .. filename, vim.log.levels.ERROR)
+              end
+            end
+
+            vim.notify("Moved " .. moved_count .. " files to IN PROGRESS")
+            picker:close()
+          end,
+        },
+      },
       on_select = function(item)
+        -- Single file selection - just open it
         vim.cmd("edit " .. item.file)
       end,
     })
