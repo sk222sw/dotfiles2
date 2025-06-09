@@ -6,12 +6,6 @@ local lspAttachTable = {
       vim.keymap.set(mode, keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
     end
 
-    -- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
-    -- map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-    -- map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
-    -- map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
-    -- map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
-    -- map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
     map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
     map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction", { "n", "x" })
     map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -67,127 +61,11 @@ local function setupCapabilities()
     capabilities = capabilities,
   })
 
-  lspconfig.emmet_language_server.setup({
-    capabilities = capabilities,
-    filetypes = {
-      "css",
-      "eruby",
-      "html",
-      "javascript",
-      "javascriptreact",
-      "less",
-      "sass",
-      "scss",
-      "pug",
-      "typescriptreact",
-      "heex",
-      "ex",
-      "html-eex",
-      "elixir",
-      "svelte",
-    },
-    -- Read more about this options in the [vscode docs](https://code.visualstudio.com/docs/editor/emmet#_emmet-configuration).
-    -- **Note:** only the options listed in the table are supported.
-    init_options = {
-      ---@type table<string, string>
-      includeLanguages = {},
-      --- @type string[]
-      excludeLanguages = {},
-      --- @type string[]
-      extensionsPath = {},
-      --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/preferences/)
-      preferences = {},
-      --- @type boolean Defaults to `true`
-      showAbbreviationSuggestions = true,
-      --- @type "always" | "never" Defaults to `"always"`
-      showExpandedAbbreviation = "always",
-      --- @type boolean Defaults to `false`
-      showSuggestionsAsSnippets = false,
-      --- @type table<string, any> [Emmet Docs](https://docs.emmet.io/customization/syntax-profiles/)
-      syntaxProfiles = {},
-      --- @type table<string, string> [Emmet Docs](https://docs.emmet.io/customization/snippets/#variables)
-      variables = {},
-    },
-  })
-
-  lspconfig.tailwindcss.setup({
-    capabilities = capabilities,
-    filetypes = {
-      "html",
-      "css",
-      "scss",
-      "javascript",
-      "typescript",
-      "react",
-      "heex",
-      "elixir",
-      "eelixir",
-      "html-eex",
-      "phoenix-heex",
-    },
-    root_dir = lspconfig.util.root_pattern(
-      "assets/tailwind.config.js",
-      "assets/tailwind.config.ts",
-      "postcss.config.js",
-      "postcss.config.ts",
-      "package.json",
-      "node_modules",
-      ".git",
-      "mix.exs"
-    ),
-    settings = {
-      init_options = {
-        userLanguages = {
-          elixir = "html-eex",
-          eelixir = "html-eex",
-          heex = "html-eex",
-        },
-      },
-      tailwindCSS = {
-        includeLanguages = {
-          elixir = "html-eex",
-          eelixir = "html-eex",
-          heex = "html-eex",
-          ["html-eex"] = "html",
-          ["phoenix-heex"] = "html",
-          markdown = "html",
-          plaintext = "html",
-          txt = "html",
-        },
-        init_options = {
-          userLanguages = {
-            elixir = "html-eex",
-            eelixir = "html-eex",
-            heex = "html-eex",
-          },
-        },
-        experimental = {
-          classRegex = {
-            'class[:]\\s*"([^"]*)"',
-            'class\\s*=\\s*"([^"]+)"',           -- Standard class="" attributes
-            'class:\\s*"([^"]+)"',               -- JSX/TSX
-            "class=\\{(.*)\\}",                  -- Handle class={@variable} interpolation
-            '{\\s*class\\s*,\\s*"([^"]+)"\\s*}', -- Tailwind class maps in Phoenix
-          },
-        },
-      },
-    },
-  })
-
-  lspconfig.lexical.setup({
-    capabilities = capabilities,
-    cmd = { vim.fn.stdpath("data") .. "/mason/bin/lexical" }, -- Auto-detect Mason path
-    filetypes = { "elixir", "eelixir", "heex" },
-    root_dir = lspconfig.util.root_pattern("mix.exs", ".git"),
-  })
-
-  -- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-  require("lspconfig").html.setup({
+  lspconfig.html.setup({
     capabilities = capabilities,
   })
 
-  require("lspconfig").svelte.setup({
+  lspconfig.svelte.setup({
     on_attach = function(client, bufnr)
       client.server_capabilities.documentFormattingProvider = false
     end,
