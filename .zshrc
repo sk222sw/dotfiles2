@@ -54,6 +54,10 @@ export PATH=$PATH:/snap/bin
 export FLYCTL_INSTALL="/home/sonny/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
+export PATH="/home/sonny/.local/share/nvimexample/mason/packages/omnisharp:$PATH"
+export PATH="/home/sonny/.local/share/nvimexample/mason/packages/omnisharp/OmniSharp:$PATH"
+alias omnisharp=OmniSharp
+export PATH="$PATH:/home/sonny/.dotnet/tools"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
