@@ -70,6 +70,25 @@ local function setupCapabilities()
       client.server_capabilities.documentFormattingProvider = false
     end,
   })
+
+  -- React/JavaScript development
+  lspconfig.ts_ls.setup({
+    capabilities = capabilities,
+    filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    settings = {
+      typescript = {
+        preferences = {
+          includePackageJsonAutoImports = "auto",
+        },
+      },
+    },
+  })
+
+  -- BiomeJS for linting and formatting
+  lspconfig.biome.setup({
+    capabilities = capabilities,
+    filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact", "json", "jsonc" },
+  })
 end
 
 return {

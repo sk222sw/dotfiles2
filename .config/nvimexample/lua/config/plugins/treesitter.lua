@@ -13,6 +13,8 @@ return {
           "markdown_inline",
           "javascript",
           "typescript",
+          "tsx",
+          "jsx",
           "go",
           "sql",
           "dockerfile",
@@ -21,6 +23,7 @@ return {
           "go",
           "yaml",
           "elixir",
+          "json",
         },
 
         -- Automatically install missing parsers when entering buffer
