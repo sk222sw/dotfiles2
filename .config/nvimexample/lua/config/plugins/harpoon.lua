@@ -1,6 +1,6 @@
 return {
   "ThePrimeagen/harpoon",
-  enabled = true,
+  enabled = false,
   branch = "harpoon2",
   opts = {
     menu = {
