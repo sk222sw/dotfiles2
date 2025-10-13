@@ -59,17 +59,18 @@ vim.keymap.set("n", "<leader>ll", function()
   require("plugins.sido").show_tasks()
 end, { desc = "" })
 
-vim.keymap.set("n", "<leader>ett", function()
-  require("plugins.go_test").run_current_go_test()
-end, { desc = "Run Go test under cursor" })
+-- _todo-0 figure out a better keybinding
+-- vim.keymap.set("n", "<leader>ett", function()
+--   require("plugins.go_test").run_current_go_test()
+-- end, { desc = "Run Go test under cursor" })
+--
+-- vim.keymap.set("n", "<leader>eta", function()
+--   require("plugins.go_test").run_all_go_tests_in_file()
+-- end, { desc = "Run all Go tests in file" })
+--
+-- vim.keymap.set("n", "<leader>En", function()
+--   require("plugins.go_test").run_all_go_tests_in_file()
+-- end, { desc = "Run all Go tests in file" })
 
-vim.keymap.set("n", "<leader>eta", function()
-  require("plugins.go_test").run_all_go_tests_in_file()
-end, { desc = "Run all Go tests in file" })
-
-vim.keymap.set("n", "<leader>En", function()
-  require("plugins.go_test").run_all_go_tests_in_file()
-end, { desc = "Run all Go tests in file" })
-
-vim.keymap.set("n", "En", vim.diagnostic.goto_next, { desc = "[E]rror [n]ext" })
-vim.keymap.set("n", "Ep", vim.diagnostic.goto_prev, { desc = "[E]rror [p]revious" })
+vim.keymap.set("n", "<leader>en", vim.diagnostic.goto_next, { desc = "[E]rror [n]ext" })
+vim.keymap.set("n", "<leader>ep", vim.diagnostic.goto_prev, { desc = "[E]rror [p]revious" })

@@ -66,3 +66,20 @@ vim.opt.cmdheight = 0
 
 vim.g.tpipeline_autoembed = 1 -- Ensures tpipeline integrates into tmux correctly
 vim.opt.laststatus = 0        -- Hides Neovim's own statusline
+
+vim.diagnostic.config({
+  float = {
+    border = "rounded",
+    source = "always",
+    scope = "cursor",
+  },
+})
+
+-- -- Show diagnostic in floating window on hover
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focus = false })
+--   end,
+-- })
+
+vim.keymap.set("n", "E", vim.diagnostic.open_float, { desc = "Show diagnostic" })
