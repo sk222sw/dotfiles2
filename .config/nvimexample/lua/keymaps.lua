@@ -59,6 +59,10 @@ vim.keymap.set("n", "<leader>ll", function()
   require("plugins.sido").show_tasks()
 end, { desc = "" })
 
+vim.keymap.set("n", "<leader>\\", function()
+  require("oil").toggle_float()
+end, { desc = "" })
+
 -- _todo-0 figure out a better keybinding
 -- vim.keymap.set("n", "<leader>ett", function()
 --   require("plugins.go_test").run_current_go_test()
