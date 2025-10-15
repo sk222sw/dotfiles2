@@ -4,7 +4,6 @@ return {
     config = function()
       require("mini.surround").setup()
       require("mini.pairs").setup()
-      require("mini.sessions").setup()
       require("mini.jump").setup()
       require("mini.cursorword").setup({
         delay = 0,
